@@ -1,0 +1,42 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="main-title">Nuestro Equipo</h1>
+    <p class="main-subtitle">Aquí puedes gestionar la lista de todos tus empleados.</p>
+    <a href="{% url 'agregar_empleado' %}" class="button-primary">Agregar Nuevo Empleado</a>
+</div>
+
+{% if empleados %}
+    <table class="table-clients">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cargo</th>
+                <th>Turno</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in empleados %}
+                <tr>
+                    <td>{{ empleado.nombre }} {{ empleado.apellido }}</td>
+                    <td>{{ empleado.cargo }}</td>
+                    <td>{{ empleado.turno }}</td>
+                    <td>{{ empleado.telefono }}</td>
+                    <td>{{ empleado.email }}</td>
+                    <td class="client-actions">
+                        <a href="{% url 'editar_empleado' empleado.pk %}" class="button-secondary">Editar</a>
+                        <a href="{% url 'eliminar_empleado' empleado.pk %}" class="button-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="text-center">No hay empleados registrados.</p>
+{% endif %}
+
+{% endblock %}

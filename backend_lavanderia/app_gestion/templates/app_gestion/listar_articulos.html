@@ -1,0 +1,42 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="main-title">Artículos de Ropa</h1>
+    <p class="main-subtitle">Aquí puedes gestionar todos los artículos de ropa.</p>
+    <a href="{% url 'agregar_articulo' %}" class="button-primary">Agregar Nuevo Artículo</a>
+</div>
+
+{% if articulos %}
+    <table class="table-clients">
+        <thead>
+            <tr>
+                <th>Tipo de Prenda</th>
+                <th>Color</th>
+                <th>Material</th>
+                <th>Tamaño</th>
+                <th>Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for articulo in articulos %}
+                <tr>
+                    <td>{{ articulo.tipo_prenda }}</td>
+                    <td>{{ articulo.color }}</td>
+                    <td>{{ articulo.material }}</td>
+                    <td>{{ articulo.tamano }}</td>
+                    <td>{{ articulo.cliente }}</td>
+                    <td class="client-actions">
+                        <a href="{% url 'editar_articulo' articulo.pk %}" class="button-secondary">Editar</a>
+                        <a href="{% url 'eliminar_articulo' articulo.pk %}" class="button-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="text-center">No hay artículos registrados.</p>
+{% endif %}
+
+{% endblock %}

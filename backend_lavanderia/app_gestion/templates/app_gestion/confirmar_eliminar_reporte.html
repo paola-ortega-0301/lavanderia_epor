@@ -1,0 +1,13 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="text-center confirm-container">
+    <h1 class="confirm-title">Eliminar Reporte Operacional</h1>
+    <p class="confirm-text">¿Estás seguro de que deseas eliminar el reporte #{{ reporte.id }} del {{ reporte.fecha_reporte }}?</p>
+    <form method="post" class="confirm-form">
+        {% csrf_token %}
+        <button type="submit" class="button-danger">Sí, eliminar</button>
+        <a href="{% url 'listar_reportes' %}" class="button-secondary">No, cancelar</a>
+    </form>
+</div>
+{% endblock %}

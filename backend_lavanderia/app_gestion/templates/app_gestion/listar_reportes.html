@@ -1,0 +1,48 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="main-title">Reportes Operacionales</h1>
+    <p class="main-subtitle">Aquí puedes gestionar todos los reportes operacionales.</p>
+    <a href="{% url 'agregar_reporte' %}" class="button-primary">Agregar Nuevo Reporte</a>
+</div>
+
+{% if reportes %}
+    <table class="table-clients">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Empleado</th>
+                <th>Pedidos Procesados</th>
+                <th>Kg de Ropa</th>
+                <th>Inactividad de Máquinas</th>
+                <th>Consumo de Agua (L)</th>
+                <th>Observaciones</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reporte in reportes %}
+                <tr>
+                    <td>{{ reporte.id }}</td>
+                    <td>{{ reporte.fecha_reporte }}</td>
+                    <td>{{ reporte.empleado }}</td>
+                    <td>{{ reporte.num_pedidos_procesados }}</td>
+                    <td>{{ reporte.kg_ropa_procesada }}</td>
+                    <td>{{ reporte.tiempo_inactividad_maquinas }}</td>
+                    <td>{{ reporte.consumo_agua_litros }}</td>
+                    <td>{{ reporte.observaciones_turno }}</td>
+                    <td class="client-actions">
+                        <a href="{% url 'editar_reporte' reporte.pk %}" class="button-secondary">Editar</a>
+                        <a href="{% url 'eliminar_reporte' reporte.pk %}" class="button-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="text-center">No hay reportes operacionales registrados.</p>
+{% endif %}
+
+{% endblock %}

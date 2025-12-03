@@ -1,0 +1,44 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="main-title">Máquinas de Lavandería</h1>
+    <p class="main-subtitle">Aquí puedes gestionar todas las máquinas de la lavandería.</p>
+    <a href="{% url 'agregar_maquina' %}" class="button-primary">Agregar Nueva Máquina</a>
+</div>
+
+{% if maquinas %}
+    <table class="table-clients">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Capacidad (kg)</th>
+                <th>Estado</th>
+                <th>Última Revisión</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for maquina in maquinas %}
+                <tr>
+                    <td>{{ maquina.tipo_maquina }}</td>
+                    <td>{{ maquina.marca }}</td>
+                    <td>{{ maquina.modelo }}</td>
+                    <td>{{ maquina.capacidad_kg }}</td>
+                    <td>{{ maquina.estado_operativo }}</td>
+                    <td>{{ maquina.ultima_revision }}</td>
+                    <td class="client-actions">
+                        <a href="{% url 'editar_maquina' maquina.pk %}" class="button-secondary">Editar</a>
+                        <a href="{% url 'eliminar_maquina' maquina.pk %}" class="button-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="text-center">No hay máquinas registradas.</p>
+{% endif %}
+
+{% endblock %}

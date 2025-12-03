@@ -1,0 +1,42 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h1 class="main-title">{% if form.instance.pk %}Editar Cliente{% else %}Agregar Cliente{% endif %}</h1>
+    
+    <form method="post" class="client-form">
+        {% csrf_token %}
+
+        {# Muestra los errores generales del formulario (no asociados a un campo específico) #}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {# Itera sobre cada campo del formulario para mostrarlo junto con sus errores #}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {# Muestra los errores específicos de este campo #}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger" style="color: red;">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="form-actions">
+            <button type="submit" class="button-primary">Guardar</button>
+            <a href="{% url 'listar_clientes' %}" class="button-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

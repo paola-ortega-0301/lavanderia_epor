@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Lavandería</title>
+    <!-- Asegúrate de tener el archivo CSS creado en static/css/styles.css -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Un estilo básico por si no tienes el CSS aún -->
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .main-header { background: #333; color: #fff; padding: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .main-header h1 a { color: #fff; text-decoration: none; }
+        .main-nav a { color: #fff; text-decoration: none; margin-right: 15px; }
+        .btn { padding: 5px 10px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; }
+        .btn-danger { background: #dc3545; }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <h1><a href="{% url 'inicio' %}">Lavandería La Espuma</a></h1>
+        <nav class="main-nav">
+            <a href="{% url 'listar_clientes' %}">Clientes</a>
+            <a href="{% url 'listar_empleados' %}">Empleados</a>
+            <a href="{% url 'listar_articulos' %}">Artículos</a>
+            <a href="{% url 'listar_maquinas' %}">Máquinas</a>
+            <a href="{% url 'listar_pedidos' %}">Pedidos</a>
+            <a href="{% url 'listar_detalles' %}">Detalles</a>
+            <a href="{% url 'listar_reportes' %}">Reportes</a>
+            <!-- Puedes añadir más enlaces aquí en el futuro -->
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <main class="main-content">
+            <!-- Aquí es donde se inyectará el contenido de las otras páginas -->
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <hr>
+        <p>&copy; {% now "Y" %} Sistema de Lavandería. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
