@@ -175,6 +175,10 @@ def listar_detalles(request):
     detalles = DetallePedidoLavanderia.objects.all()
     return render(request, 'app_gestion/listar_detalles.html', {'detalles': detalles})
 
+def ver_detalle_pedido(request, pk):
+    detalle = get_object_or_404(DetallePedidoLavanderia, pk=pk)
+    return render(request, 'app_gestion/ver_detalle_pedido.html', {'detalle': detalle})
+
 def agregar_detalle(request):
     if request.method == 'POST':
         form = DetallePedidoLavanderiaForm(request.POST)
