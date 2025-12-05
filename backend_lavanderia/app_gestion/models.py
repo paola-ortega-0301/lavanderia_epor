@@ -10,7 +10,7 @@ class ClienteLavanderia(models.Model):
     email = models.CharField(max_length=100)
     direccion_recogida = models.CharField(max_length=255)
     direccion_entrega = models.CharField(max_length=255)
-    fecha_registro = models.DateField(auto_now_add=True) # CambiÃ© a auto_now_add para comodidad
+    fecha_registro = models.DateField(auto_now_add=True)
     notas_cliente = models.TextField(null=True, blank=True)
     preferencias_lavado = models.TextField(null=True, blank=True)
 
@@ -34,7 +34,7 @@ class EmpleadoLavanderia(models.Model):
         return f"{self.nombre} {self.apellido} - {self.cargo}"
 
 # ========================================================
-# ARTÃCULO DE ROPA
+# ARTÍCULO DE ROPA
 # ========================================================
 class ArticuloRopa(models.Model):
     tipo_prenda = models.CharField(max_length=100)
@@ -57,7 +57,7 @@ class ArticuloRopa(models.Model):
         return f"{self.tipo_prenda} - {self.color}"
 
 # ========================================================
-# MÃQUINA
+# MÁQUINA
 # ========================================================
 class MaquinaLavanderia(models.Model):
     tipo_maquina = models.CharField(max_length=50)
@@ -115,6 +115,10 @@ class DetallePedidoLavanderia(models.Model):
         on_delete=models.CASCADE,
         related_name="detalles"
     )
+    maquinas = models.ManyToManyField(
+        MaquinaLavanderia,
+        related_name="detalles_pedido"
+    )
     cantidad = models.IntegerField()
     tipo_servicio = models.CharField(max_length=50)
     costo_servicio_individual = models.DecimalField(max_digits=5, decimal_places=2)
@@ -138,7 +142,7 @@ class ReporteOperacional(models.Model):
     )
     num_pedidos_procesados = models.IntegerField()
     kg_ropa_procesada = models.DecimalField(max_digits=10, decimal_places=2)
-    tiempo_inactividad_maquinas = models.IntegerField()
+    tiempo_inactividad_maquinas = models.IntegerField(verbose_name="Tiempo de inactividad de máquinas (horas)")
     observaciones_turno = models.TextField(null=True, blank=True)
     consumo_agua_litros = models.DecimalField(max_digits=10, decimal_places=2)
 

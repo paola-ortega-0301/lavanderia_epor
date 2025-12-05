@@ -1,0 +1,26 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="main-title">Detalle del Pedido</h1>
+    <div class="card-container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Detalles del Pedido</h2>
+            </div>
+            <div class="card-body">
+                <p><strong>Pedido ID:</strong> {{ detalle.pedido.id }}</p>
+                <p><strong>Articulo:</strong> {{ detalle.articulo.tipo_prenda }}</p>
+                <p><strong>Maquina:</strong> {{ detalle.maquina.tipo_maquina|default:"Sin asignar" }}</p>
+                <p><strong>Cantidad:</strong> {{ detalle.cantidad }}</p>
+                <p><strong>Tipo de servicio:</strong> {{ detalle.tipo_servicio }}</p>
+                <p><strong>Costo del servicio:</strong> ${{ detalle.costo_servicio_individual }}</p>
+                <p><strong>Subtotal:</strong> ${{ detalle.subtotal_item }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions">
+        <a href="{% url 'listar_detalles' %}" class="button-secondary">Volver a la lista</a>
+    </div>
+</div>
+{% endblock %}

@@ -32,6 +32,7 @@
                     <td>{{ pedido.total_pedido }}</td>
                     <td>{{ pedido.empleado_recepcion }}</td>
                     <td class="client-actions">
+                        <a href="{% url 'ver_pedido' pedido.pk %}" class="button-primary">Ver</a>
                         <a href="{% url 'editar_pedido' pedido.pk %}" class="button-secondary">Editar</a>
                         <a href="{% url 'eliminar_pedido' pedido.pk %}" class="button-danger">Eliminar</a>
                     </td>

@@ -26,6 +26,7 @@
                     <td>{{ cliente.telefono }}</td>
                     <td>{{ cliente.email }}</td>
                     <td class="client-actions">
+                        <a href="{% url 'ver_cliente' cliente.pk %}" class="button-primary">Ver</a>
                         <a href="{% url 'editar_cliente' cliente.pk %}" class="button-secondary">Editar</a>
                         <a href="{% url 'eliminar_cliente' cliente.pk %}" class="button-danger">Eliminar</a>
                     </td>

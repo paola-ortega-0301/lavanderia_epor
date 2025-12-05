@@ -1,0 +1,23 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="main-title">Detalles del Artículo</h1>
+</div>
+
+<div class="card">
+    <p><strong>Tipo de Prenda:</strong> {{ articulo.tipo_prenda }}</p>
+    <p><strong>Color:</strong> {{ articulo.color }}</p>
+    <p><strong>Material:</strong> {{ articulo.material }}</p>
+    <p><strong>Tamaño:</strong> {{ articulo.tamano }}</p>
+    <p><strong>Instrucciones Especiales:</strong> {{ articulo.instrucciones_especiales }}</p>
+    <p><strong>Costo de Lavado Estándar:</strong> {{ articulo.costo_lavado_estandar }}</p>
+    <p><strong>Estado del Artículo:</strong> {{ articulo.estado_articulo }}</p>
+    <p><strong>Es Delicado:</strong> {{ articulo.es_delicado|yesno:"Sí,No" }}</p>
+    <p><strong>Cliente:</strong> {{ articulo.cliente }}</p>
+</div>
+
+<div class="text-center">
+    <a href="{% url 'listar_articulos' %}" class="button-secondary">Volver a la Lista</a>
+</div>
+{% endblock %}

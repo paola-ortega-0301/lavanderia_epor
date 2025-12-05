@@ -34,6 +34,7 @@
                     <td>{{ reporte.consumo_agua_litros }}</td>
                     <td>{{ reporte.observaciones_turno }}</td>
                     <td class="client-actions">
+                        <a href="{% url 'ver_reporte' reporte.pk %}" class="button-primary">Ver</a>
                         <a href="{% url 'editar_reporte' reporte.pk %}" class="button-secondary">Editar</a>
                         <a href="{% url 'eliminar_reporte' reporte.pk %}" class="button-danger">Eliminar</a>
                     </td>

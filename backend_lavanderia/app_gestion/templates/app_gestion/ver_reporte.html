@@ -1,0 +1,21 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="main-title">Detalles del Reporte</h1>
+</div>
+
+<div class="card">
+    <p><strong>Fecha del Reporte:</strong> {{ reporte.fecha_reporte }}</p>
+    <p><strong>Empleado:</strong> {{ reporte.empleado }}</p>
+    <p><strong>Pedidos Procesados:</strong> {{ reporte.num_pedidos_procesados }}</p>
+    <p><strong>Kg de Ropa Procesada:</strong> {{ reporte.kg_ropa_procesada }}</p>
+    <p><strong>Tiempo de Inactividad de Máquinas (horas):</strong> {{ reporte.tiempo_inactividad_maquinas }}</p>
+    <p><strong>Consumo de Agua (litros):</strong> {{ reporte.consumo_agua_litros }}</p>
+    <p><strong>Observaciones:</strong> {{ reporte.observaciones_turno }}</p>
+</div>
+
+<div class="text-center">
+    <a href="{% url 'listar_reportes' %}" class="button-secondary">Volver a la Lista</a>
+</div>
+{% endblock %}

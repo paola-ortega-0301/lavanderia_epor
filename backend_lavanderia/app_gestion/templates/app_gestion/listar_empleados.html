@@ -28,6 +28,7 @@
                     <td>{{ empleado.telefono }}</td>
                     <td>{{ empleado.email }}</td>
                     <td class="client-actions">
+                        <a href="{% url 'ver_empleado' empleado.pk %}" class="button-primary">Ver</a>
                         <a href="{% url 'editar_empleado' empleado.pk %}" class="button-secondary">Editar</a>
                         <a href="{% url 'eliminar_empleado' empleado.pk %}" class="button-danger">Eliminar</a>
                     </td>

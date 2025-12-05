@@ -38,6 +38,10 @@ def eliminar_cliente(request, pk):
         return redirect('listar_clientes')
     return render(request, 'app_gestion/confirmar_eliminar.html', {'cliente': cliente})
 
+def ver_cliente(request, pk):
+    cliente = get_object_or_404(ClienteLavanderia, pk=pk)
+    return render(request, 'app_gestion/ver_cliente.html', {'cliente': cliente})
+
 # Vistas de Empleados
 def listar_empleados(request):
     empleados = EmpleadoLavanderia.objects.all()
@@ -70,6 +74,10 @@ def eliminar_empleado(request, pk):
         empleado.delete()
         return redirect('listar_empleados')
     return render(request, 'app_gestion/confirmar_eliminar_empleado.html', {'empleado': empleado})
+
+def ver_empleado(request, pk):
+    empleado = get_object_or_404(EmpleadoLavanderia, pk=pk)
+    return render(request, 'app_gestion/ver_empleado.html', {'empleado': empleado})
 
 # Vistas de Articulos de Ropa
 def listar_articulos(request):
@@ -104,6 +112,10 @@ def eliminar_articulo(request, pk):
         return redirect('listar_articulos')
     return render(request, 'app_gestion/confirmar_eliminar_articulo.html', {'articulo': articulo})
 
+def ver_articulo(request, pk):
+    articulo = get_object_or_404(ArticuloRopa, pk=pk)
+    return render(request, 'app_gestion/ver_articulo.html', {'articulo': articulo})
+
 # Vistas de Maquinas
 def listar_maquinas(request):
     maquinas = MaquinaLavanderia.objects.all()
@@ -137,6 +149,10 @@ def eliminar_maquina(request, pk):
         return redirect('listar_maquinas')
     return render(request, 'app_gestion/confirmar_eliminar_maquina.html', {'maquina': maquina})
 
+def ver_maquina(request, pk):
+    maquina = get_object_or_404(MaquinaLavanderia, pk=pk)
+    return render(request, 'app_gestion/ver_maquina.html', {'maquina': maquina})
+
 # Vistas de Pedidos
 def listar_pedidos(request):
     pedidos = PedidoLavanderia.objects.all()
@@ -169,6 +185,10 @@ def eliminar_pedido(request, pk):
         pedido.delete()
         return redirect('listar_pedidos')
     return render(request, 'app_gestion/confirmar_eliminar_pedido.html', {'pedido': pedido})
+
+def ver_pedido(request, pk):
+    pedido = get_object_or_404(PedidoLavanderia, pk=pk)
+    return render(request, 'app_gestion/ver_pedido.html', {'pedido': pedido})
 
 # Vistas de Detalles de Pedidos
 def listar_detalles(request):
@@ -239,3 +259,7 @@ def eliminar_reporte(request, pk):
         reporte.delete()
         return redirect('listar_reportes')
     return render(request, 'app_gestion/confirmar_eliminar_reporte.html', {'reporte': reporte})
+
+def ver_reporte(request, pk):
+    reporte = get_object_or_404(ReporteOperacional, pk=pk)
+    return render(request, 'app_gestion/ver_reporte.html', {'reporte': reporte})

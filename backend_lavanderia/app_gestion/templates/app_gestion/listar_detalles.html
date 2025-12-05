@@ -32,6 +32,7 @@
                     <td>{{ detalle.costo_servicio_individual }}</td>
                     <td>{{ detalle.subtotal_item }}</td>
                     <td class="client-actions">
+                        <a href="{% url 'ver_detalle_pedido' detalle.pk %}" class="button-primary">Ver</a>
                         <a href="{% url 'editar_detalle' detalle.pk %}" class="button-secondary">Editar</a>
                         <a href="{% url 'eliminar_detalle' detalle.pk %}" class="button-danger">Eliminar</a>
                     </td>

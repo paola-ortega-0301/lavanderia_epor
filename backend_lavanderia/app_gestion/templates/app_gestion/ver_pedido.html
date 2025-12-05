@@ -1,0 +1,21 @@
+{% extends 'app_gestion/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="main-title">Detalles del Pedido</h1>
+</div>
+
+<div class="card">
+    <p><strong>Cliente:</strong> {{ pedido.cliente }}</p>
+    <p><strong>Empleado:</strong> {{ pedido.empleado_recepcion }}</p>
+    <p><strong>Fecha de Entrega Estimada:</strong> {{ pedido.fecha_entrega_estimada }}</p>
+    <p><strong>Fecha de Entrega Real:</strong> {{ pedido.fecha_entrega_real }}</p>
+    <p><strong>Estado del Pedido:</strong> {{ pedido.estado_pedido }}</p>
+    <p><strong>Costo Total:</strong> {{ pedido.total_pedido }}</p>
+    <p><strong>Comentarios del Cliente:</strong> {{ pedido.comentarios_cliente }}</p>
+</div>
+
+<div class="text-center">
+    <a href="{% url 'listar_pedidos' %}" class="button-secondary">Volver a la Lista</a>
+</div>
+{% endblock %}
