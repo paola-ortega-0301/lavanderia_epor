@@ -3,13 +3,9 @@ from .models import ClienteLavanderia, EmpleadoLavanderia, ArticuloRopa, Maquina
 from .fields import CustomDateField
 
 class ClienteForm(forms.ModelForm):
-    fecha_registro = CustomDateField()
     class Meta:
         model = ClienteLavanderia
         fields = '__all__'
-        widgets = {
-            'fecha_registro': forms.DateInput(attrs={'type': 'date'}),
-        }
 
 class EmpleadoForm(forms.ModelForm):
     fecha_contratacion = CustomDateField()

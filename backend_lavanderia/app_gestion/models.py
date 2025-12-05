@@ -10,7 +10,6 @@ class ClienteLavanderia(models.Model):
     email = models.CharField(max_length=100)
     direccion_recogida = models.CharField(max_length=255)
     direccion_entrega = models.CharField(max_length=255)
-    fecha_registro = models.DateField(auto_now_add=True)
     notas_cliente = models.TextField(null=True, blank=True)
     preferencias_lavado = models.TextField(null=True, blank=True)
 
