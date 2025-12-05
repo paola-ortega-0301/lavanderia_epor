@@ -1,6 +1,8 @@
 from django import forms
-from .models import ClienteLavanderia, EmpleadoLavanderia, ArticuloRopa, MaquinaLavanderia, PedidoLavanderia, DetallePedidoLavanderia, ReporteOperacional
-from .fields import CustomDateField
+from .models import (
+    ClienteLavanderia, EmpleadoLavanderia, ArticuloRopa, MaquinaLavanderia, 
+    PedidoLavanderia, DetallePedidoLavanderia, ReporteOperacional
+)
 
 class ClienteForm(forms.ModelForm):
     class Meta:
@@ -8,7 +10,6 @@ class ClienteForm(forms.ModelForm):
         fields = '__all__'
 
 class EmpleadoForm(forms.ModelForm):
-    fecha_contratacion = CustomDateField()
     class Meta:
         model = EmpleadoLavanderia
         fields = '__all__'
@@ -22,7 +23,6 @@ class ArticuloRopaForm(forms.ModelForm):
         fields = '__all__'
 
 class MaquinaLavanderiaForm(forms.ModelForm):
-    ultima_revision = CustomDateField()
     class Meta:
         model = MaquinaLavanderia
         fields = '__all__'
@@ -31,15 +31,20 @@ class MaquinaLavanderiaForm(forms.ModelForm):
         }
 
 class PedidoLavanderiaForm(forms.ModelForm):
-    fecha_entrega_estimada = CustomDateField()
-    fecha_entrega_real = CustomDateField()
+    fecha_entrega_estimada = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+        input_formats=['%Y-%m-%d']
+    )
+    # El campo de fecha de entrega real puede estar vacío
+    fecha_entrega_real = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+        input_formats=['%Y-%m-%d'],
+        required=False
+    )
+
     class Meta:
         model = PedidoLavanderia
         fields = '__all__'
-        widgets = {
-            'fecha_entrega_estimada': forms.DateInput(attrs={'type': 'date'}),
-            'fecha_entrega_real': forms.DateInput(attrs={'type': 'date'}),
-        }
 
 class DetallePedidoLavanderiaForm(forms.ModelForm):
     maquinas = forms.ModelMultipleChoiceField(
@@ -51,7 +56,6 @@ class DetallePedidoLavanderiaForm(forms.ModelForm):
         fields = '__all__'
 
 class ReporteOperacionalForm(forms.ModelForm):
-    fecha_reporte = CustomDateField()
     class Meta:
         model = ReporteOperacional
         fields = '__all__'
